@@ -1,0 +1,6 @@
+REMEMBER how you set this up.
+
+Knew about react-rails, didn't know about webpacker, or using node install.
+Searched around until you found a flux package, for working with react-rails. Found this -- it fit the bill and resembled the code involved with the module.export (which allowed you to pre-compile everything into a bundle.js file, which is what webpacker was for).
+
+When testing notes, went through various frequencies.
