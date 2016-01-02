@@ -2,6 +2,10 @@
   Here's the test content! React will be below...
 </div>
 
-<div class="content">
-  
+<div class="content" id="main">
+  <!-- //PH:** remember you can't have JSX here... all server-side -->
+  <script type="text/javascript">    
+    React.render( React.createElement(Organ), 
+                  document.getElementById('main') );
+  </script>
 </div>
