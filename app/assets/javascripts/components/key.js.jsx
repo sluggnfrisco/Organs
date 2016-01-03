@@ -16,7 +16,8 @@ var Key = React.createClass({
     isInStore ? this.fireNote() : this.stopNote();
   },
   
-  fireNote: function() {      //PH: ** won't keydown ALWAYS fire?? yes...
+  fireNote: function() {      
+    //PH: ** won't keydown ALWAYS fire?? yes... but we're already casing for unneeded changes inside key_store.js, so this is just for safety
     if (this.state.isPressed) {return;}
     this.note.start();
     //PH: before, was manually re-triggering render. instead, just set isPressed

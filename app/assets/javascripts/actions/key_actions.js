@@ -14,5 +14,12 @@
         keyName: keyName,
       });
     },
-  }
-}(window))
+    
+    updateKeys: function(keys) {
+      Dispatcher.dispatch({
+        actionType: OrganConstants.UPDATE_KEYS,
+        keys: keys,
+      });
+    },
+  };
+}(window));

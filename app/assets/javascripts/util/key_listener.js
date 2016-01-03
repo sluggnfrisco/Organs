@@ -33,4 +33,4 @@ $(function() {
     }
     KeyActions.keyReleased(keyName);
   };
-});      //PH:** ERR REM for some reason, you can't have a semicolon after the IIFE
+});      //PH:** REM $(function) will automatically invoke it on document.ready!

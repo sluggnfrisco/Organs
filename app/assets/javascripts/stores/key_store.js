@@ -24,6 +24,7 @@
   var CHANGE_EVENT = 'change'
   var _keys = []
   // _callbacks = [] isn't necessary (we used to push into and splice out of callbacks here) because we're using eventEmitter to keep track of everything using this.on(), etc.
+  
   var KeyStore = root.KeyStore = new EventEmitter();
   
   KeyStore.emitChange = function() {
@@ -43,16 +44,23 @@
   };
   
   KeyStore.addKeyName = function(keyName) {
-    if (_keys.indexOf(keyName) == -1) {     //PH:** - should keep this way??
+    if (_keys.indexOf(keyName) == -1) {     //PH:** - should keep this way?? Yes
       _keys.push(keyName);
+      this.emitChange();            //PH:** NOTE REM: solutions explicitly emit
     }
   };
   
   KeyStore.removeKeyName = function(keyName) {
-    var idx = _keys.indexOf(keyName);
+    var idx = _keys.indexOf(keyName)
     if (idx != -1) {
       _keys.splice(idx, 1)
+      this.emitChange();
     }
+  };
+  
+  KeyStore.updateKeys = function(keys) {
+    _keys = keys;
+    this.emitChange();
   };
     
   KeyStore.getAll = function() {
@@ -63,11 +71,13 @@
     switch (action.actionType) {
       case OrganConstants.KEY_PRESSED:
         KeyStore.addKeyName(action.keyName);
-        KeyStore.emitChange();
+        // KeyStore.emitChange();             //PH:** i choose to do this in the method, like the solutions
         break;
       case OrganConstants.KEY_RELEASED:
         KeyStore.removeKeyName(action.keyName);
-        KeyStore.emitChange();
+        break;
+      case OrganConstants.UPDATE_KEYS:
+        KeyStore.updateKeys(action.keys);
         break;
     }
   });
